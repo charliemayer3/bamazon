@@ -10,16 +10,19 @@ var connection = mysql.createConnection({
   database: "bamazon"
 });
 
-console.log("connected!");
+// console.log("connected!");
 
 function displayProducts() {
   connection.query("SELECT * FROM products", function(err, res) {
+    console.log("Welcome to BAMAZON!!")
     for (var i = 0; i < res.length; i++) {
     	// console.log(res)
     	console.log(res[i].id + " | " + res[i].product_name + " | " + res[i].department_name + " | " + res[i].price + " | " + res[i].stock_quantity);
     }
     console.log("-----------------------------------");
+
     placeOrder()
+
   });
   
 }
@@ -38,7 +41,7 @@ function placeOrder() {
   		message: 'Please enter the quantity of the selected product that you would like to purchase.'
 	  }
 	  ]).then(function(answers) {
-			console.log("success")
+			// console.log("Success!!")
 			connection.query("SELECT * FROM products WHERE id=?", [answers.item], function(err, res) {
 				var newStock = parseInt(res[0].stock_quantity) - parseInt(answers.quantity)
 				if (res[0].stock_quantity >= answers.quantity) {
@@ -58,27 +61,8 @@ function placeOrder() {
 				} else {
 					console.log("Insufficient stock to fill your order!")
 				}
+
 			});
 		})
 }
 
-
-
-
-
-// 	  ]).then(function(answers) {
-// 	  	console.log("success")
-// 			var query = connection.query(
-// 				"UPDATE products SET ? WHERE ?",
-// 				    [
-// 				      {
-// 				        stock_quantity: += answers.quantity
-// 				      },
-// 				      {
-// 				        id: answers.item
-// 				      }
-// 				    ],
-
-// 			)
-// 		})
-// }
