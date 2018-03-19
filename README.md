@@ -1,6 +1,6 @@
 # bamazon
 
-In the Amazon themed NODE.js application, you can log in as either a customer or the manager.  
+In this Amazon themed NODE.js application, you can log in as either a customer or the manager.  
 
 If logged in as a customer, you are able to see a list of all products for sale, including their departments, cost, and the amount of inventory available.  These items are stored in a HeidiSQL database.  You can then choose items to purchase and receive a total cost of your order.  It also will alert you if the inventory is too low to fulfill your order, and will automatically update the inventory to reflect your purchase.
 
